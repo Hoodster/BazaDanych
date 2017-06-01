@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.app_name);
 
+        //viewpager
         viewpager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewpager);
 
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity
     //metoda potrzebna by dodać zakładki
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FirstTab(), "PIERWSZY");
+        adapter.addFragment(new SecondTab(), "DRUGI");
+        viewPager.setAdapter(adapter);
     }
 
 
