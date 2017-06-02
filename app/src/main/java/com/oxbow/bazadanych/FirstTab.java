@@ -16,7 +16,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.oxbow.bazadanych.Data.Adapter;
 import com.oxbow.bazadanych.Data.SampleData;
+import com.oxbow.bazadanych.Data.dbHandler;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class FirstTab extends Fragment {
     ListView list;
     Context activity;
     ArrayList<SampleData> dane;
-    NewScheduleAdapter adapter;
+    Adapter adapter;
     dbHandler handler;
     private getTask task;
 
@@ -69,7 +71,6 @@ public class FirstTab extends Fragment {
     {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(0, 1, 0, getResources().getString(R.string.context_delete));
-        menu.add(0, 2,0, getResources().getString(R.string.context_edit));
     }
 
     @Override
@@ -78,8 +79,8 @@ public class FirstTab extends Fragment {
         SampleData data = (SampleData) adapter.getItem(info.position);
         if (item.getItemId() == 1)
         {
-            handler.delete(schedule);
-            adapter.remove(schedule);
+            handler.delete(data);
+            adapter.remove(data);
         } else if (item.getItemId() == 2)
         {
 
@@ -99,8 +100,8 @@ public class FirstTab extends Fragment {
 
         @Override
         protected ArrayList<SampleData> doInBackground(Void... arg0) {
-            ArrayList<SampleData> dataList = handler.getSchedules();
-            return dataList;
+            ArrayList<SampleData> dane = handler.getDatas();
+            return dane;
         }
 
 
@@ -110,10 +111,10 @@ public class FirstTab extends Fragment {
             if (activityRef.get() != null && !activityRef.get().isFinishing())
             {
                 Log.d("dane", datList.toString());
-                schedules = datList;
+                dane = datList;
                 if (datList != null) {
                     if (datList.size() != 0) {
-                        adapter = new NewScheduleAdapter(activity, datList);
+                        adapter = new Adapter(activity, datList);
                         list.setAdapter(adapter);
                     } else {
                         Toast.makeText(activity, getResources().getString(R.string.no_trips), Toast.LENGTH_LONG).show();

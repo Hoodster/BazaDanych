@@ -68,7 +68,6 @@ public class SampleData {
     public void writeToParcel (Parcel parcel, int flags) {
         parcel.writeInt(getId());
         parcel.writeString(getName());
-
     }
 
     public static final Parcelable.Creator<SampleData> CREATOR = new Parcelable.Creator<SampleData>() {
@@ -77,7 +76,7 @@ public class SampleData {
         }
 
         public SampleData[] newArray(int size) {
-            return new SampleData[][size];
+            return new SampleData[size];
         }
 
     };
