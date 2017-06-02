@@ -59,12 +59,12 @@ public class SampleData {
         return true;
     }
 
-    @Override
+
     public int describeContents() {
         return 0;
     }
 
-    @Override
+
     public void writeToParcel (Parcel parcel, int flags) {
         parcel.writeInt(getId());
         parcel.writeString(getName());
