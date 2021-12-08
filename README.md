@@ -4,3 +4,7 @@
 
 # BazaDanych
 SQLite, zakładki
+
+### ! Inner project for learning purposes.!
+
+### Type: Android App
